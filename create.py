@@ -2,7 +2,7 @@ import os
 import shutil
 from aocd import get_data
 
-YEAR = 2023
+YEAR = 2025
 
 if __name__ == '__main__':
     folders = os.listdir('solutions')
