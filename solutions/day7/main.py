@@ -52,7 +52,6 @@ def add_position(new_positions, x, y, modifier=1):
 
 def task2():
     grid = get_input()
-    splits = 1
     positions = [(0, grid[0].index('S'), 1)]
     while (any([pos for pos in positions if pos[0] + 1 < len(grid)])):
         new_positions = []
@@ -61,7 +60,6 @@ def task2():
             if grid[new_position[0]][new_position[1]] == "^":
                 add_position(new_positions, new_position[0], new_position[1] - 1, new_position[2])
                 add_position(new_positions, new_position[0], new_position[1] + 1, new_position[2])
-                splits += 1
             else:
                 add_position(new_positions, new_position[0], new_position[1], new_position[2])
         positions = new_positions
