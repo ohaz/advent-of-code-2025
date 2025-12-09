@@ -1,1 +1,2 @@
 advent-of-code-data==2.1.0
+shapely==2.1.2
