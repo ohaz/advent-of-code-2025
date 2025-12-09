@@ -45,25 +45,15 @@ def generate_edges_for(corners):
 def task2():
     corners = [(int(line.split(',')[0]), int(line.split(',')[1])) for line in get_input()]
     
-
     largest = -1
 
     polygon = Polygon(corners)
     prepare(polygon)
 
-    for i, c1 in enumerate(tqdm(corners[:-1])):
+    for i, c1 in enumerate(tqdm(corners)):
         for c2 in corners[i+1:]:
             rect = Polygon([(c1[0], c1[1]), (c2[0], c1[1]), (c2[0], c2[1]), (c1[0], c2[1])])
-            if polygon.contains(rect):
-                largest = max(largest, abs(c2[0] - c1[0] - 1) * abs(c2[1] - c1[1] - 1))
+            if polygon.covers(rect):
+                largest = max(largest, (abs(c2[0] - c1[0]) + 1) * (abs(c2[1] - c1[1]) + 1))
 
-    #full_edges_outside = generate_edges_for(corners)
-
-    #for i, c1 in enumerate(tqdm(corners[:-1])):
-    #    for j, c2 in enumerate(corners[i+1:]):
-    #        for borderpiece in full_edges_outside:
-    #            if (borderpiece[0] < max([c1[0], c2[0]]) and borderpiece[0] > min([c1[0], c2[0]])) and (borderpiece[1] < max([c1[1], c2[1]]) and borderpiece[1] > min([c1[1], c2[1]])):
-    #                break
-    #        else:
-    #            largest = max(largest, abs(c2[0] - c1[0] - 1) * abs(c2[1] - c1[1] - 1))
     return largest
